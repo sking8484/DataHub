@@ -8,3 +8,9 @@ class StockPrices(BaseModel):
   price: float
 
 
+
+class StockPricesOut(StockPrices):
+
+  class Config:
+    orm_mode = True
+
