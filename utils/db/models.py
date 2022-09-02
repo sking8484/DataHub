@@ -9,4 +9,4 @@ class StockPricing(Base):
 
   date = Column(String(252), primary_key = True)
   symbol = Column(String(252), primary_key = True)
-  price = Column(Float, primary_key = True)
+  value = Column(Float, primary_key = True)

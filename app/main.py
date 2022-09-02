@@ -3,7 +3,10 @@ from .routers import StockData
 from utils.db.database import SessionLocal, engine, get_db
 from utils import pydanticModels
 from utils.db import models
+from starlette.datastructures import UploadFile as StarletteUploadFile
 
+# keep the SpooledTemporaryFile in-memory
+StarletteUploadFile.spool_max_size = 0
 models.Base.metadata.create_all(bind = engine)
 
 
