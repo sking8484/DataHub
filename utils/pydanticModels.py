@@ -1,10 +1,10 @@
 from pydantic import BaseModel
-from datetime import date, datetime, time, timedelta
+from datetime import date, time, timedelta
 from typing import List
 
 
 class StockPrices(BaseModel):
-  date: datetime
+  date: str
   symbol: str
   value: float
 
