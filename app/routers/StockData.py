@@ -38,15 +38,8 @@ def postStockData(data:List[pydanticModels.StockPrices], raw_db = Depends(get_ra
     SQL += '(%s, %s, %s),'
 
 
-
-
-
-
-
   cursor.execute(SQL[:-1], dataToInsert)
   cnxn.commit()
-
-
 
   return {'message':'Pricing Updated'}
 
