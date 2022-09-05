@@ -4,9 +4,9 @@ from typing import List
 
 
 class StockPrices(BaseModel):
-  date: str
+  date: datetime
   symbol: str
-  value: str
+  value: float
 
 
 
