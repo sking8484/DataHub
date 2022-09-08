@@ -8,8 +8,6 @@ class StockPrices(BaseModel):
   symbol: str
   value: float
 
-
-
 class StockPricesOut(StockPrices):
 
   class Config:

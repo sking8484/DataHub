@@ -1,7 +1,9 @@
+from statistics import mode
 from fastapi import APIRouter, Depends, HTTPException
 from utils import pydanticModels
 from typing import List
 from utils.db.database import get_db, engine, get_raw_db
+from sqlalchemy.sql.expression import func
 from sqlalchemy.orm import Session
 from utils.db import models
 import json
@@ -50,4 +52,12 @@ def getStockData(db:Session = Depends(get_raw_db)):
   cursor = db[0]
   cursor.execute(SQL)
   data = cursor.fetchall()
+  return data
+
+@router.get('/{symbol}/maxdate')
+def getMaxDate(symbol:str,db:Session = Depends(get_raw_db)):
+
+  SQL = f'SELECT MAX(date) FROM {models.StockPricing.__tablename__} WHERE SYMBOL = %s'
+  db[0].execute(SQL, [symbol])
+  data = db[0].fetchone()
   return data
