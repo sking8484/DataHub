@@ -55,10 +55,10 @@ def getStockData(db:Session = Depends(get_raw_db)):
   return data
 
 #base/maxcol/symbol
-@router.get('/date/{symbol}')
-def getMaxDate(symbol:str,db:Session = Depends(get_raw_db)):
+@router.get('/{column}/{symbol}')
+def getMaxDate(column:str, symbol:str,db:Session = Depends(get_raw_db)):
 
-  SQL = f'SELECT MAX(date) FROM {models.StockPricing.__tablename__} WHERE SYMBOL = %s'
+  SQL = f'SELECT MAX({column}) FROM {models.StockPricing.__tablename__} WHERE SYMBOL = %s'
   db[0].execute(SQL, [symbol])
   data = db[0].fetchone()
-  return data['MAX(date)']
+  return data[f'MAX({column})']
