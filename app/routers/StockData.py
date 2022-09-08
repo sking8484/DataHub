@@ -60,4 +60,4 @@ def getMaxDate(symbol:str,db:Session = Depends(get_raw_db)):
   SQL = f'SELECT MAX(date) FROM {models.StockPricing.__tablename__} WHERE SYMBOL = %s'
   db[0].execute(SQL, [symbol])
   data = db[0].fetchone()
-  return data
+  return data['MAX(date)']
