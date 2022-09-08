@@ -31,7 +31,7 @@ def get_db():
 def get_raw_db():
   cnxn = mysql.connector.connect(user = settings.database_user, password = settings.database_password, host = settings.database_host, database = settings.database)
 
-  cursor = cnxn.cursor()
+  cursor = cnxn.cursor(dictionary=True)
   try:
     yield [cursor, cnxn]
   finally:

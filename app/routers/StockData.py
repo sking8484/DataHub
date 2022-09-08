@@ -43,6 +43,11 @@ def postStockData(data:List[pydanticModels.StockPrices], raw_db = Depends(get_ra
 
   return {'message':'Pricing Updated'}
 
-@router.get('/', response_model=List[pydanticModels.StockPricesOut])
-def getStockData(db:Session = Depends(get_db)):
-  return db.query(models.StockPricing).all()
+
+@router.get('/')
+def getStockData(db:Session = Depends(get_raw_db)):
+  SQL = f'SELECT * FROM {models.StockPricing.__tablename__}'
+  cursor = db[0]
+  cursor.execute(SQL)
+  data = cursor.fetchall()
+  return data
